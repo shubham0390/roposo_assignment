@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:elevation="2dp"
+    app:cardCornerRadius="2dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/header_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin">
+
+            <ImageView
+                android:id="@+id/user_image_view"
+                android:layout_width="@dimen/list_item_avatar_size"
+                android:layout_height="@dimen/list_item_avatar_size"
+                android:layout_centerVertical="true"
+                android:src="@drawable/sipla_circle" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_toRightOf="@id/user_image_view"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/user_name_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                    tools:text="Ritik Roshan" />
+
+                <TextView
+                    android:id="@+id/follow_unfollow_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:textSize="12sp"
+                    tools:text="Following" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/story_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/header_container"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="8dp"
+            tools:text="so roposo" />
+
+        <ImageView
+            android:id="@+id/story_content_image"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:layout_below="@id/story_title"
+            android:src="@drawable/content" />
+
+
+        <TextView
+            android:id="@+id/comment_count_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/story_content_image"
+            android:layout_marginLeft="16dp"
+            android:padding="5dp"
+            android:textSize="@dimen/header_text_size"
+            tools:text="234 Comments" />
+
+        <TextView
+            android:id="@+id/like_count_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/story_content_image"
+            android:layout_marginLeft="24dp"
+            android:layout_toRightOf="@id/comment_count_textview"
+            android:padding="5dp"
+            android:textSize="@dimen/header_text_size"
+            tools:text="234 Likes" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/comment_count_textview"
+            android:layout_marginTop="8dp"
+            android:background="@color/divider" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/comment_button"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/divider"
+            android:drawableLeft="@drawable/ic_comment_black_24dp"
+            android:drawablePadding="@dimen/activity_horizontal_margin"
+            android:text="@string/comments"
+            android:textColor="@color/secondary_text"
+            android:textSize="12sp" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/like_button"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/divider"
+            android:layout_toRightOf="@id/comment_button"
+            android:drawableLeft="@drawable/ic_favorite_border_black_24dp"
+            android:drawablePadding="@dimen/activity_horizontal_margin"
+            android:text="@string/like"
+            android:textColor="@color/secondary_text"
+            android:textSize="12sp" />
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

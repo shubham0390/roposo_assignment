@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Roposo Assignment</string>
+    <string name="tag_async_task_fragment">Async Task Fragment</string>
+    <string name="story_activity_title">Stories</string>
+    <string name="title_activity_detail_view">DetailViewActivity</string>
+    <string name="like">Like</string>
+    <string name="comments">Comments</string>
+    <string name="comments_error_message">Not implemented</string>
+
+    <plurals name="comment_count">
+        <item quantity="one">%d Comment</item>
+        <item quantity="other">%d Comments</item>
+    </plurals>
+
+    <plurals name="like_count">
+        <item quantity="one">%d Like</item>
+        <item quantity="other">%d Likes</item>
+    </plurals>
+
+</resources>
