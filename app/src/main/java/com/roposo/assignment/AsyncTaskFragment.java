@@ -99,7 +99,7 @@ public class AsyncTaskFragment extends Fragment {
 
         @Override
         protected List<Story> doInBackground(String... urls) {
-            new JSONDataParser().praseData(getActivity());
+            new JSONDataParser().parseData(getActivity());
             return DataManager.getInstance().getAllStory();
         }
 

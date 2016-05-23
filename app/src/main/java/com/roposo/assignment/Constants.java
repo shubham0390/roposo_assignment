@@ -29,4 +29,5 @@ public interface Constants {
     /*Application constant*/
 
     String EXTRA_STORY_ID = "storyId";
+    String EXTRA_POSITION = "position";
 }

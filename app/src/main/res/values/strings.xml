@@ -8,6 +8,11 @@
     <string name="comments_error_message">Not implemented</string>
     <string name="following">Following</string>
     <string name="unfollow">Unfollow</string>
+    <string name="alert_message_unfollow">Do you want to unfollow ?</string>
+    <string name="alert_message_follow">Do you want to follow ?</string>
+    <string name="alert">Alert!</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
     <plurals name="comment_count">
         <item quantity="one">%d Comment</item>

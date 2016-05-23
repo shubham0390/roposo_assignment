@@ -1,5 +1,6 @@
 package com.roposo.assignment;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -26,7 +27,12 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskFragment
         setSupportActionBar(toolbar);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        recyclerView.addItemDecoration(new SpaceItemDecoration(25,true,true));
+        recyclerView.addItemDecoration(new SpaceItemDecoration(25, true, true));
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         installAsyncFragment();
     }
 
@@ -38,9 +44,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskFragment
             installFragment(asyncFragment);
             asyncFragment.startTask();
         } else {
-            /*if (!asyncFragment.isInLayout()) {
-                installFragment(asyncFragment);
-            }*/
             if (!asyncFragment.isRunning()) {
                 asyncFragment.startTask();
             }
@@ -61,7 +64,17 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskFragment
 
     @Override
     public void onTaskFinished(List<Story> result) {
-        storyAdapter = new StoryAdapter(result);
+        storyAdapter = new StoryAdapter(this,result);
         recyclerView.setAdapter(storyAdapter);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data != null) {
+            int position = data.getIntExtra(Constants.EXTRA_POSITION, -1);
+            if (position >= 0)
+                storyAdapter.notifyItemChanged(position);
+        }
     }
 }

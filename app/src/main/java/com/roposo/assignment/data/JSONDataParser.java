@@ -24,7 +24,7 @@ public class JSONDataParser {
         this.dataManager = DataManager.getInstance();
     }
 
-    public void praseData(Context context) {
+    public void parseData(Context context) {
         Log.d(TAG, "Parsing Data start");
         String jsonString = readFile("response_data.json", context);
         try {
