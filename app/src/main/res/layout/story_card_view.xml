@@ -26,7 +26,7 @@
                 android:layout_width="@dimen/list_item_avatar_size"
                 android:layout_height="@dimen/list_item_avatar_size"
                 android:layout_centerVertical="true"
-                android:src="@drawable/sipla_circle" />
+                />
 
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/follow_unfollow_text_view"
@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             android:minHeight="350dp"
             android:layout_below="@id/story_title"
-            android:src="@drawable/content" />
+            />
 
 
         <TextView
