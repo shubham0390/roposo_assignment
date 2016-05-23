@@ -35,4 +35,13 @@ public class DataManager {
     public List<Story> getAllStory() {
         return storyList;
     }
+
+    public Story getStoryById(String storyId) {
+        for (Story story : storyList) {
+            if (story.getId().equals(storyId)) {
+                return story;
+            }
+        }
+        return null;
+    }
 }

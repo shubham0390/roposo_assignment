@@ -1,6 +1,7 @@
 package com.roposo.assignment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -16,14 +17,13 @@ import android.widget.Toast;
 import com.roposo.assignment.data.DataManager;
 import com.roposo.assignment.data.Story;
 import com.roposo.assignment.data.User;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.StoryViewHolder> {
 
-
     private List<Story> stories;
-    private Context context;
 
     public StoryAdapter(List<Story> stories) {
         this.stories = stories;
@@ -31,13 +31,20 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.StoryViewHol
 
     @Override
     public StoryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        context = parent.getContext();
         return new StoryViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.story_card_view, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(StoryViewHolder holder, int position) {
+    public void onBindViewHolder(StoryViewHolder holder, final int position) {
         holder.bindData(stories.get(position));
+        holder.setonClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), DetailViewActivity.class);
+                intent.putExtra(Constants.EXTRA_STORY_ID, stories.get(position).getId());
+                v.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -53,8 +60,7 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.StoryViewHol
         TextView userNameTextView;
         TextView titleTextView;
         ImageView storyContentImageView;
-        TextView commentCountTextView;
-        TextView likeCountTextView;
+        TextView descriptionTextView;
         Button likeButton;
         Button commentsButton;
 
@@ -66,8 +72,7 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.StoryViewHol
             userNameTextView = (TextView) rootView.findViewById(R.id.user_name_text_view);
             titleTextView = (TextView) rootView.findViewById(R.id.story_title);
             storyContentImageView = (ImageView) rootView.findViewById(R.id.story_content_image);
-            commentCountTextView = (TextView) rootView.findViewById(R.id.comment_count_textview);
-            likeCountTextView = (TextView) rootView.findViewById(R.id.like_count_textview);
+            descriptionTextView = (TextView) rootView.findViewById(R.id.description_textview);
             likeButton = (Button) rootView.findViewById(R.id.like_button);
             commentsButton = (Button) rootView.findViewById(R.id.comment_button);
         }
@@ -75,22 +80,23 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.StoryViewHol
         public void bindData(final Story story) {
             final Context context = userProfileImageView.getContext();
             User user = DataManager.getInstance().getUser(story.getDb());
-            /*Picasso.with(userProfileImageView.getContext())
+            Picasso.with(userProfileImageView.getContext())
                     .load(user.getImage())
                     .resize(40, 40)
                     .into(userProfileImageView);
             Picasso.with(storyContentImageView.getContext())
                     .load(story.getSi())
-                    .into(storyContentImageView);*/
+                    .into(storyContentImageView);
             setFollow(user.is_following());
             userNameTextView.setText(user.getUsername());
             titleTextView.setText(story.getTitle());
+            descriptionTextView.setText(story.getDescription());
             String comment = context.getResources().getQuantityString(R.plurals.comment_count,
                     story.getCommentCount(), story.getCommentCount());
-            commentCountTextView.setText(comment);
+            commentsButton.setText(comment);
             String like = context.getResources().getQuantityString(R.plurals.like_count,
                     story.getLikesCount(), story.getLikesCount());
-            likeCountTextView.setText(like);
+            likeButton.setText(like);
             likeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -133,10 +139,14 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.StoryViewHol
 
         private void setFollow(boolean following) {
             if (following) {
-                followToggleTextView.setText("Following");
+                followToggleTextView.setText(followToggleTextView.getContext().getString(R.string.following));
             } else {
-                followToggleTextView.setText("");
+                followToggleTextView.setText(followToggleTextView.getContext().getString(R.string.unfollow));
             }
+        }
+
+        public void setonClickListener(View.OnClickListener onClickListener) {
+            rootView.setOnClickListener(onClickListener);
         }
     }
 }

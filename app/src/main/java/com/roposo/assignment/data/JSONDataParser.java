@@ -3,6 +3,8 @@ package com.roposo.assignment.data;
 import android.content.Context;
 import android.util.Log;
 
+import com.roposo.assignment.Constants;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,7 +32,7 @@ public class JSONDataParser {
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 /* If json object contain key as type than i am assuming it is a story otherwise user*/
-                boolean isStory = jsonObject.has(DataConstants.STORY_TYPE);
+                boolean isStory = jsonObject.has(Constants.STORY_TYPE);
                 if (isStory) {
                     Log.d(TAG, "JSON object is a story at position -: " + i);
                     parseStory(jsonObject);
@@ -47,32 +49,32 @@ public class JSONDataParser {
 
     private void parseUser(JSONObject jsonObject) throws JSONException {
         User user = new User();
-        user.setCreatedOn(jsonObject.getLong(DataConstants.USER_CREATED_ON));
-        user.setIs_following(jsonObject.getBoolean(DataConstants.USER_IS_FOLLOWING));
-        user.setUrl(jsonObject.getString(DataConstants.USER_URL));
-        user.setImage(jsonObject.getString(DataConstants.USER_IMAGE));
-        user.setHandle(jsonObject.getString(DataConstants.USER_HANDLE));
-        user.setFollowing(jsonObject.getInt(DataConstants.USER_FOLLOWING));
-        user.setFollowers(jsonObject.getInt(DataConstants.USER_FOLLOWERS));
-        user.setUsername(jsonObject.getString(DataConstants.USER_NAME));
-        user.setId(jsonObject.getString(DataConstants.USER_ID));
-        user.setAbout(jsonObject.getString(DataConstants.USER_ABOUT));
+        user.setCreatedOn(jsonObject.getLong(Constants.USER_CREATED_ON));
+        user.setIs_following(jsonObject.getBoolean(Constants.USER_IS_FOLLOWING));
+        user.setUrl(jsonObject.getString(Constants.USER_URL));
+        user.setImage(jsonObject.getString(Constants.USER_IMAGE));
+        user.setHandle(jsonObject.getString(Constants.USER_HANDLE));
+        user.setFollowing(jsonObject.getInt(Constants.USER_FOLLOWING));
+        user.setFollowers(jsonObject.getInt(Constants.USER_FOLLOWERS));
+        user.setUsername(jsonObject.getString(Constants.USER_NAME));
+        user.setId(jsonObject.getString(Constants.USER_ID));
+        user.setAbout(jsonObject.getString(Constants.USER_ABOUT));
         dataManager.addUser(user);
     }
 
     private void parseStory(JSONObject jsonObject) throws JSONException {
         Story story = new Story();
-        story.setCommentCount(jsonObject.getInt(DataConstants.STORY_COMMENT_COUNT));
-        story.setLikesCount(jsonObject.getInt(DataConstants.STORY_LIKE_COUNT));
-        story.setLikeFlag(jsonObject.getBoolean(DataConstants.STORY_LIKE_FLAG));
-        story.setTitle(jsonObject.getString(DataConstants.STORY_TITLE));
-        story.setType(jsonObject.getString(DataConstants.STORY_TYPE));
-        story.setSi(jsonObject.getString(DataConstants.STORY_SI));
-        story.setUrl(jsonObject.getString(DataConstants.STORY_URL));
-        story.setDb(jsonObject.getString(DataConstants.STORY_DB));
-        story.setVerb(jsonObject.getString(DataConstants.STORY_VERB));
-        story.setId(jsonObject.getString(DataConstants.STORY_ID));
-        story.setDescription(jsonObject.getString(DataConstants.STORY_DESCRIPTION));
+        story.setCommentCount(jsonObject.getInt(Constants.STORY_COMMENT_COUNT));
+        story.setLikesCount(jsonObject.getInt(Constants.STORY_LIKE_COUNT));
+        story.setLikeFlag(jsonObject.getBoolean(Constants.STORY_LIKE_FLAG));
+        story.setTitle(jsonObject.getString(Constants.STORY_TITLE));
+        story.setType(jsonObject.getString(Constants.STORY_TYPE));
+        story.setSi(jsonObject.getString(Constants.STORY_SI));
+        story.setUrl(jsonObject.getString(Constants.STORY_URL));
+        story.setDb(jsonObject.getString(Constants.STORY_DB));
+        story.setVerb(jsonObject.getString(Constants.STORY_VERB));
+        story.setId(jsonObject.getString(Constants.STORY_ID));
+        story.setDescription(jsonObject.getString(Constants.STORY_DESCRIPTION));
         dataManager.addStory(story);
     }
 

@@ -1,6 +1,6 @@
-package com.roposo.assignment.data;
+package com.roposo.assignment;
 
-public interface DataConstants {
+public interface Constants {
     /*USER CONSTANTS*/
     String USER_ABOUT = "about";
     String USER_ID = "id";
@@ -25,4 +25,8 @@ public interface DataConstants {
     String STORY_LIKE_FLAG = "like_flag";
     String STORY_LIKE_COUNT = "likes_count";
     String STORY_COMMENT_COUNT = "comment_count";
+
+    /*Application constant*/
+
+    String EXTRA_STORY_ID = "storyId";
 }
